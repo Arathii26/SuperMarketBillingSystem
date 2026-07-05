@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Product.h"
+#include "Store.h"
 using namespace std;
 
 int main(){
@@ -62,5 +63,15 @@ int main(){
     cout << "     DAY 1 TESTING COMPLETED SUCCESSFULLY" << endl;
     cout << "==========================================" << endl;
 
+
+    cout << "\n\n===== TESTING STORE CLASS =====\n";
+
+Store supermarket;
+
+supermarket.addProduct();
+supermarket.addProduct();
+
+cout << "\nDisplaying All Products:\n";
+supermarket.displayAllProducts();
 return 0;
 }
