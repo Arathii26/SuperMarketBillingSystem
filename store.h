@@ -12,4 +12,10 @@ class Store{
         void addProduct();
 
         void displayAllProducts();
+
+        void searchProduct();
+
+        void removeProduct();
+
+        void updateProduct();
 };
