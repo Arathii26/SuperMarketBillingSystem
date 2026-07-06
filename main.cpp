@@ -1,5 +1,5 @@
 #include <iostream>
-#include "store.h"
+#include "Store.h"
 
 using namespace std;
 
@@ -18,7 +18,8 @@ int main()
         cout << "3. Search Product\n";
         cout << "4. Update Product\n";
         cout << "5. Remove Product\n";
-        cout << "6. Exit\n";
+        cout << "6. Generate Bill\n";
+        cout << "7. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -45,6 +46,10 @@ int main()
             break;
 
         case 6:
+            supermarket.generateBill();
+            break;
+
+        case 7:
             cout << "\nThank you for using the Supermarket Management System!\n";
             break;
 
@@ -52,7 +57,7 @@ int main()
             cout << "\nInvalid Choice! Please try again.\n";
         }
 
-    } while (choice != 6);
+    } while (choice != 7);
 
     return 0;
 }

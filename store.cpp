@@ -88,3 +88,44 @@ void Store::updateProduct(){
     }
     cout<<"\n Product Not Found\n";
 }
+
+void Store::generateBill(){
+    int id,quantity;
+    double totalBill = 0;
+
+    while(true){
+        cout<<"\nEnter product ID (-1 to Finish):";
+        cin>>id;
+
+        if(id==-1){
+            break;
+        }
+        bool found =false;
+
+        for(int i=0;i<productCount;i++){
+            if(products[i].getProductID() == id){
+                found = true;
+
+                cout<<"Enter Quantity:";
+                cin>>quantity;
+
+                if(quantity <= products[i].getQuantity()){
+                    double amount =quantity * products[i].getPrice();
+                    totalBill += amount;
+                    products[i].reduceStock(quantity);
+                    cout<<"Added to Bill Amount="<<amount<<endl;
+                }
+                else{
+                    cout<<"Insufficient Stock!"<<endl;
+                }
+                break;
+            }
+        }
+        if(!found){
+            cout<<"Product Not Found!"<<endl;
+        }
+    }
+    cout << "\n===================================" << endl;
+    cout << "TOTAL BILL = " << totalBill << endl;
+    cout << "===================================" << endl;
+}

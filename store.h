@@ -18,4 +18,6 @@ class Store{
         void removeProduct();
 
         void updateProduct();
+
+        void generateBill();
 };
