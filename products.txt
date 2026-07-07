@@ -1,10 +1,15 @@
 101
 Milk
 40
-3
+0
 Dairy
 102
 bread
 45
-5
+0
 bakery
+103
+Coffee
+30
+3
+Drinks

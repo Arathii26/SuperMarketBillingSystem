@@ -26,7 +26,7 @@ public:
 
     // Input & Display
     void inputProduct();
-    void displayProduct();
+    virtual void displayProduct();
 
     // Getters
     int getProductID();

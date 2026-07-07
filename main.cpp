@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Store.h"
+#include "DiscountProduct.h"
+
 
 using namespace std;
 
@@ -58,6 +60,14 @@ int main()
         }
 
     } while (choice != 7);
+
+    cout << "\n========== INHERITANCE & POLYMORPHISM TEST ==========\n";
+
+    DiscountProduct dp(201, "Chocolate", 100, 50, "Snacks", 20);
+
+    Product* p = &dp;
+
+    p->displayProduct();
 
     return 0;
 }
