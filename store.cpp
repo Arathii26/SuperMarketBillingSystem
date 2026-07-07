@@ -5,6 +5,7 @@ using namespace std;
 
 Store::Store(){
     productCount = 0;
+    loadFromFile();
 }
 
 void Store::addProduct(){
@@ -14,6 +15,7 @@ void Store::addProduct(){
         products[productCount].inputProduct();
 
         productCount++;
+        saveToFile();
 
         cout << "\nProduct Added Successfully!\n";
     }
@@ -66,6 +68,7 @@ void Store::removeProduct(){
         productCount--;
 
         cout<<"\nProduct Removed Successfully!\n";
+        saveToFile();
         return;
         }
     }
@@ -83,6 +86,7 @@ void Store::updateProduct(){
             products[i].inputProduct();
 
             cout<<"\nProduct Updated Successfully!\n";
+            saveToFile();
             return;
         }
     }
@@ -113,6 +117,7 @@ void Store::generateBill(){
                     double amount =quantity * products[i].getPrice();
                     totalBill += amount;
                     products[i].reduceStock(quantity);
+                    saveToFile();
                     cout<<"Added to Bill Amount="<<amount<<endl;
                 }
                 else{
@@ -128,4 +133,63 @@ void Store::generateBill(){
     cout << "\n===================================" << endl;
     cout << "TOTAL BILL = " << totalBill << endl;
     cout << "===================================" << endl;
+}
+
+void Store::saveToFile(){
+    ofstream file("products.txt");
+    if(!file){
+        cout<<"Error opening file!"<<endl;
+        return;
+    }
+    for(int i=0;i<productCount;i++){
+        file << products[i].getProductID()<<endl;
+        file << products[i].getProductName()<<endl;
+        file << products[i].getPrice()<<endl;
+        file << products[i].getQuantity()<<endl;
+        file << products[i].getCategory()<<endl;
+    }
+    file.close();
+    cout<<"\nProducts saved successfully!\n";
+}
+
+void Store::loadFromFile(){
+    ifstream file("products.txt");
+    if(!file){
+        cout<< "No previous data found\n";
+        return;
+    }
+
+    productCount=0;
+
+    while(file){
+        int id,quantity;
+        double price;
+        string name,category;
+
+        file>>id;
+
+        if(file.eof())
+            break;
+
+        file.ignore();
+
+        getline(file,name);
+
+        file>>price;
+        file>>quantity;
+
+        file.ignore();
+
+        getline(file,category);
+
+        products[productCount].setProductID(id);
+        products[productCount].setProductName(name);
+        products[productCount].setPrice(price);
+        products[productCount].setCategory(category);
+
+        productCount++;
+    }
+    file.close();
+
+    cout<<"Products loaded successfully!\n";
 }

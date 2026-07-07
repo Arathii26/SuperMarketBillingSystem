@@ -1,5 +1,6 @@
 #pragma once
 #include "Product.h"
+#include <fstream>
 
 class Store{
     private:
@@ -20,4 +21,8 @@ class Store{
         void updateProduct();
 
         void generateBill();
+
+        void saveToFile();
+
+        void loadFromFile();
 };
